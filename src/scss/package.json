@@ -1,0 +1,7 @@
+{
+  "license": "UNLICENSED",
+  "flat": true,
+  "dependencies": {
+    "bulma": "^0.5.1"
+  }
+}
