@@ -2,6 +2,6 @@
   "license": "UNLICENSED",
   "flat": true,
   "dependencies": {
-    "bulma": "^0.5.1"
+    "bulma": "^0.6.0"
   }
 }

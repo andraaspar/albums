@@ -1,1 +1,6 @@
-@import '../node_modules/bulma/bulma';
+@import '~bulma/bulma';
+
+.column
+{
+	overflow: hidden;
+}

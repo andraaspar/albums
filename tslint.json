@@ -1,0 +1,39 @@
+{
+	"defaultSeverity": "error",
+	"extends": [],
+	"jsRules": {},
+	"rules": {
+		"no-unused-variable": {
+			// Disallows unused imports, variables, functions and private class members.
+			"options": [true, { "ignore-pattern": "Vnode" }],
+			"severity": "warning"
+		},
+		"no-duplicate-imports": true, // Disallows multiple import statements from the same module.
+		"import-spacing": true, // Ensures proper spacing between import statement keywords
+		"ordered-imports": true, // Requires that import statements be alphabetized.
+		"quotemark": [true, "single", "jsx-single", "avoid-escape"], // Requires single or double quotes for string literals.
+		"semicolon": [true, "never"], // Enforces consistent semicolon usage at the end of every statement.
+		"no-angle-bracket-type-assertion": true, // Requires the use of as Type for type assertions instead of <Type>.
+		"new-parens": true, // Requires parentheses when invoking a constructor via the new keyword.,
+		"encoding": true, // Enforces UTF-8 file encoding.
+		"array-type": [true, "array"], // Requires using either ‘T[]’ or ‘Array' for arrays.
+		"linebreak-style": [true, "LF"], // Enforces a consistent linebreak style.
+		"eofline": true, // Ensures the file ends with a newline.
+		// "cyclomatic-complexity": true, // Enforces a threshold of cyclomatic complexity.
+		"radix": true, // Requires the radix parameter to be specified when calling parseInt.
+		"prefer-object-spread": true, // Enforces the use of the ES2015 object spread operator over Object.assign() where appropriate.
+		// "no-use-before-declare": true // Disallows usage of variables before their declaration. // Confused by classes
+		"no-unused-expression": true, // Disallows unused expression statements.
+		"no-invalid-template-strings": true, // Warns on use of ${ in non-template strings.
+		"no-object-literal-type-assertion": true, // Forbids an object literal to appear in a type assertion expression. Casting to any is still allowed.
+		// "no-unbound-method": true, // Warns when a method is used as outside of a method call. // Does not recognize alternative binding methods
+		"no-string-throw": true, // Flags throwing plain strings or concatenations of strings because only Errors produce proper stack traces.
+		"no-for-in-array": true, // Disallows iterating over an array with a for-in loop.
+		// "no-floating-promises": true // Promises returned by functions must be handled appropriately. // Weird
+		"no-conditional-assignment": true, // Disallows any type of assignment in conditionals.
+		"forin": true, // Requires a for ... in statement to be filtered with an if statement.
+		"await-promise": true, // Warns for an awaited value that is not a Promise.
+		"unified-signatures": true // Warns for any two overloads that could be unified into one by using a union or an optional/rest parameter.
+	},
+	"rulesDirectory": []
+}

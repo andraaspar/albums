@@ -6,13 +6,22 @@
   "author": "András Parditka",
   "license": "MIT",
   "devDependencies": {
+    "@types/react": "^16.0.34",
+    "@types/react-dom": "^16.0.3",
+    "@types/react-redux": "^5.0.14",
     "awesome-typescript-loader": "^3.2.2",
+    "css-loader": "^0.28.8",
     "del-cli": "^1.1.0",
+    "extract-text-webpack-plugin": "^3.0.2",
+    "file-loader": "^1.1.6",
     "html-webpack-plugin": "^2.30.1",
     "node-sass": "^4.5.3",
     "sass-loader": "^6.0.6",
+    "style-loader": "^0.19.1",
+    "tslint": "^5.8.0",
     "typescript": "^2.4.2",
-    "webpack": "3.5.1"
+    "webpack": "3.5.1",
+    "webpack-bundle-analyzer": "^2.9.1"
   },
   "dependencies": {
     "express": "^4.15.4"
@@ -20,7 +29,9 @@
   "scripts": {
     "installDeps": "yarn && cd src/scss && yarn && cd ../ts && yarn",
     "clean": "del-cli build",
-    "compile": "yarn run installDeps && yarn run clean && webpack",
-    "watch": "yarn run installDeps && yarn run clean && webpack --watch"
+    "lint": "tslint --project ./tsconfig.json --exclude \"**/node_modules/**\" --fix",
+    "compile": "yarn run installDeps && yarn run clean && yarn run lint && webpack",
+    "watch": "yarn run installDeps && yarn run clean && yarn run lint && webpack --watch",
+    "server": "node ."
   }
 }

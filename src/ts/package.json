@@ -2,11 +2,16 @@
   "license": "UNLICENSED",
   "flat": true,
   "dependencies": {
-    "illa": "^9.0.0",
-    "mithril": "^1.1.3",
-    "mithril-tsx-component": "^2.1.0"
+    "illa": "^13.1.0",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-redux": "^5.0.6",
+    "redux": "^3.7.2",
+    "redux-saga": "^0.16.0",
+    "window-onerror-handler": "^0.0.1"
   },
-  "devDependencies": {
-    "@types/mithril": "^1.1.7"
+  "devDependencies": {},
+  "resolutions": {
+    "illa": "13.2.0"
   }
 }
