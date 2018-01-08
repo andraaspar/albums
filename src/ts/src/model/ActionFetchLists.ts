@@ -35,7 +35,7 @@ export function createActionFetchListsSuccess(o: ActionFetchListsSuccessSchema):
 }
 
 export interface ActionFetchListsErrorSchema {
-	error: any
+	error: string
 }
 
 export interface ActionFetchListsError extends Action, ActionFetchListsErrorSchema {

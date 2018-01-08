@@ -1,20 +1,10 @@
-import { assign } from 'illa/ObjectUtil'
-import { ModelListItem } from './ModelListItem'
+import { combineReducers } from 'redux'
+import { lists, State_Lists } from 'src/ts/src/model/State_Lists'
 
-export interface StateSchema {
-	input?: string
-	isLoadingLists?: boolean
-	lists?: ModelListItem[][]
-	tracks?: ModelListItem[]
-	error?: any
+export interface State {
+	readonly lists: State_Lists
 }
 
-export interface State extends StateSchema {
-	input: string
-}
-
-export function createState(o: StateSchema): State {
-	return assign({
-		input: 'Initial input',
-	}, o)
-}
+export const rootReducer = combineReducers<State>({
+	lists,
+})

@@ -17,7 +17,7 @@ export interface AppCompPropsFromStore {
 	isLoadingLists: boolean
 	lists: ModelListItem[][]
 	tracks: ModelListItem[]
-	error: any
+	error: string
 }
 export interface AppCompPropsDispatch {
 	setInput(v: string): void
@@ -52,7 +52,7 @@ class AppCompPure extends Component<AppCompProps, AppCompState> {
 							<ColumnComp _isFull>
 								<article className='message is-danger'>
 									<div className='message-body' style={{ whiteSpace: `pre-wrap` }}>
-										{this.props.error + ''}
+										{this.props.error}
 									</div>
 								</article>
 							</ColumnComp>
@@ -108,7 +108,7 @@ class AppCompPure extends Component<AppCompProps, AppCompState> {
 }
 
 export const AppComp = connect<AppCompPropsFromStore, AppCompPropsDispatch, AppCompPropsOwn, State>(
-	({ input, isLoadingLists, lists, tracks, error }, ownProps) => ({
+	({ lists: { input, isLoadingLists, lists, tracks, error } }, ownProps) => ({
 		input,
 		isLoadingLists,
 		lists: lists ? lists.map(filterItems) : undefined,
@@ -121,7 +121,7 @@ export const AppComp = connect<AppCompPropsFromStore, AppCompPropsDispatch, AppC
 	}),
 )(AppCompPure)
 
-export function filterItems(items: ModelListItem[]) {
+export function filterItems(items: ReadonlyArray<ModelListItem>) {
 	return items ? items.filter(track => track.albumTitle || track.artistName || track.trackTitle) : undefined
 }
 
