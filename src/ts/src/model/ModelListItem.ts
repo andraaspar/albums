@@ -1,6 +1,7 @@
 import { assign } from 'illa/ObjectUtil'
 
 export interface ModelListItemSchema {
+	id: string
 	artistName: string
 	albumTitle: string
 	trackTitle?: string

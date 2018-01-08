@@ -1,7 +1,7 @@
 import { ActionFetchLists, ActionFetchListsError, ActionFetchListsSuccess } from './ActionFetchLists'
-import { ActionSetInput } from './ActionSetInput'
+import { ActionSetQuery } from './ActionSetInput'
 
-export type TAction = ActionSetInput
+export type TAction = ActionSetQuery
 	| ActionFetchLists
 	| ActionFetchListsSuccess
 	| ActionFetchListsError

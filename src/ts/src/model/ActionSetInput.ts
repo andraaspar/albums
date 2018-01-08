@@ -2,16 +2,16 @@ import { assign } from 'illa/ObjectUtil'
 import { Action } from './Action'
 import { ActionType } from './ActionType'
 
-export interface ActionSetInputSchema {
+export interface ActionSetQuerySchema {
 	input: string
 }
 
-export interface ActionSetInput extends Action, ActionSetInputSchema {
-	type: ActionType.SetInput
+export interface ActionSetQuery extends Action, ActionSetQuerySchema {
+	type: ActionType.SetQuery
 }
 
-export function createActionSetInput(o: ActionSetInputSchema): ActionSetInput {
+export function createActionSetQuery(o: ActionSetQuerySchema): ActionSetQuery {
 	return assign({
-		type: ActionType.SetInput as ActionType.SetInput,
+		type: ActionType.SetQuery as ActionType.SetQuery,
 	}, o)
 }

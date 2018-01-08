@@ -1,19 +1,22 @@
+import { escapeRegExp } from 'illa/StringUtil'
 import { Component, createElement, Fragment } from 'react'
 import { connect, DispatchProp } from 'react-redux'
 import { Dispatch } from 'redux'
 import { createActionFetchLists } from '../model/ActionFetchLists'
-import { createActionSetInput } from '../model/ActionSetInput'
+import { createActionSetQuery } from '../model/ActionSetInput'
 import { Icon } from '../model/Icon'
 import { ModelListItem } from '../model/ModelListItem'
 import { State } from '../model/State'
 import { ColumnComp } from './ColumnComp'
+import { FieldComp } from './FieldComp'
 import { IconComp } from './IconComp'
+import { InputComp } from './InputComp'
 import { ListItemComp } from './ListItemComp'
 import { PanelBlockComp } from './PanelBlockComp'
 import { PanelComp } from './PanelComp'
 
 export interface AppCompPropsFromStore {
-	input: string
+	query: string
 	isLoadingLists: boolean
 	lists: ModelListItem[][]
 	tracks: ModelListItem[]
@@ -47,16 +50,23 @@ class AppCompPure extends Component<AppCompProps, AppCompState> {
 					</div>
 				</div>
 				<div className='container is-fluid'>
+					<FieldComp
+						_iconLeft={<IconComp _icon={Icon.search} />}
+					>
+						<InputComp
+							value={this.props.query}
+							onChange={e => this.props.setInput(e.target.value)}
+							placeholder={`Filter...`}
+						/>
+					</FieldComp>
+					{this.props.error &&
+						<article className='message is-danger'>
+							<div className='message-body' style={{ whiteSpace: `pre-wrap` }}>
+								{this.props.error}
+							</div>
+						</article>
+					}
 					<div className='columns'>
-						{this.props.error &&
-							<ColumnComp _isFull>
-								<article className='message is-danger'>
-									<div className='message-body' style={{ whiteSpace: `pre-wrap` }}>
-										{this.props.error}
-									</div>
-								</article>
-							</ColumnComp>
-						}
 						<ColumnComp>
 							<PanelComp _heading={`Favourite tracks`}>
 								{this.props.isLoadingLists &&
@@ -67,9 +77,9 @@ class AppCompPure extends Component<AppCompProps, AppCompState> {
 									</PanelBlockComp>
 								}
 								{this.props.tracks &&
-									this.props.tracks.map((track, index) =>
-										<PanelBlockComp key={index}>
-											<ListItemComp _item={track} />
+									this.props.tracks.map((item, index) =>
+										<PanelBlockComp key={item.id}>
+											<ListItemComp _item={item} />
 										</PanelBlockComp>
 									)
 								}
@@ -86,9 +96,9 @@ class AppCompPure extends Component<AppCompProps, AppCompState> {
 										</PanelBlockComp>
 									}
 									{this.props.lists && this.props.lists[stars] &&
-										this.props.lists[stars].map((track, index) =>
-											<PanelBlockComp key={index}>
-												<ListItemComp _item={track} />
+										this.props.lists[stars].map((item, index) =>
+											<PanelBlockComp key={item.id}>
+												<ListItemComp _item={item} />
 											</PanelBlockComp>
 										)
 									}
@@ -108,21 +118,32 @@ class AppCompPure extends Component<AppCompProps, AppCompState> {
 }
 
 export const AppComp = connect<AppCompPropsFromStore, AppCompPropsDispatch, AppCompPropsOwn, State>(
-	({ lists: { input, isLoadingLists, lists, tracks, error } }, ownProps) => ({
-		input,
+	({ lists: { query, isLoadingLists, lists, tracks, error } }, ownProps) => ({
+		query,
 		isLoadingLists,
-		lists: lists ? lists.map(filterItems) : undefined,
-		tracks: filterItems(tracks),
+		lists: lists ? lists.map(_ => filterItems(_, query)) : undefined,
+		tracks: filterItems(tracks, query),
 		error,
 	}),
 	(dispatch: Dispatch<State>, ownProps) => ({
-		setInput: input => dispatch(createActionSetInput({ input })),
+		setInput: input => dispatch(createActionSetQuery({ input })),
 		loadLists: () => dispatch(createActionFetchLists({}))
 	}),
 )(AppCompPure)
 
-export function filterItems(items: ReadonlyArray<ModelListItem>) {
-	return items ? items.filter(track => track.albumTitle || track.artistName || track.trackTitle) : undefined
+function itemHash(item: ModelListItem) {
+	return `${item.artistName || ''} ${item.albumTitle || ''} ${item.trackTitle || ''}`
+}
+
+function filterItems(items: ReadonlyArray<ModelListItem>, query: string) {
+	if (!items) return undefined
+	const queryRe = query && query.trim() ? new RegExp(escapeRegExp(query), `i`) : undefined
+	return items
+		.filter(track => {
+			const isValid = track.albumTitle || track.artistName || track.trackTitle
+			const matchesQuery = !queryRe || queryRe.test(itemHash(track))
+			return isValid && matchesQuery
+		})
 }
 
 function makeStars(count: number, max: number): string {

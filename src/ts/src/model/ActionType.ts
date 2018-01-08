@@ -1,6 +1,6 @@
 
 export enum ActionType {
-	SetInput = 'SetInput',
+	SetQuery = 'SetQuery',
 	FetchLists = 'FetchLists',
 	FetchListsSuccess = 'FetchListsSuccess',
 	FetchListsError = 'FetchListsError',

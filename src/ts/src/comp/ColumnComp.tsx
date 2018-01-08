@@ -2,7 +2,7 @@ import { classes } from 'illa/MithrilUtil'
 import { Component, createElement } from 'react'
 
 export interface ColumnCompProps {
-	_isFull?: boolean
+	_isFullWidth?: boolean
 }
 export interface ColumnCompState { }
 
@@ -19,7 +19,7 @@ export class ColumnComp extends Component<ColumnCompProps, ColumnCompState> {
 		return (
 			<div className={classes(
 				`column`,
-				this.props._isFull && `is-full`,
+				this.props._isFullWidth && `is-full`,
 			)}>
 				{this.props.children}
 			</div>

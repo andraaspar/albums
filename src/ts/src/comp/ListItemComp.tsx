@@ -23,9 +23,10 @@ export class ListItemComp extends Component<ListItemCompProps, ListItemCompState
 				{this.props._item.trackTitle ?
 					<Fragment>
 						<strong>{this.props._item.trackTitle}</strong>
+						{` `}
 						<small>
 							<em>
-								{` on `}
+								{` on `}
 								{this.props._item.albumTitle}
 							</em>
 						</small>

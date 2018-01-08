@@ -1,23 +1,21 @@
-import { assign } from 'illa/ObjectUtil'
-import { withInterface } from 'illa/Type'
 import { ActionType } from './ActionType'
 import { ModelListItem } from './ModelListItem'
 import { TAction } from './TAction'
 
 export interface State_Lists {
-	readonly input?: string
+	readonly query?: string
 	readonly isLoadingLists?: boolean
 	readonly lists?: ReadonlyArray<ReadonlyArray<ModelListItem>>
 	readonly tracks?: ReadonlyArray<ModelListItem>
 	readonly error?: string
 }
 
-export function lists(state: State_Lists = { input: '' }, action: TAction): State_Lists {
+export function lists(state: State_Lists = { query: '' }, action: TAction): State_Lists {
 	switch (action.type) {
-		case ActionType.SetInput:
+		case ActionType.SetQuery:
 			return {
 				...state,
-				input: action.input,
+				query: action.input,
 			}
 		case ActionType.FetchLists:
 			return {
