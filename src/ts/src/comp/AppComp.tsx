@@ -39,14 +39,14 @@ class AppCompPure extends Component<AppCompProps, AppCompState> {
 	render() {
 		return (
 			<Fragment>
-				<div className='container is-fluid'>
-					<div className='navbar is-dark'>
-						<div className='navbar-brand'>
-							<h1 className='navbar-item'>
-								{`My favourite albums & tracks`}
-							</h1>
-						</div>
+				<div className='navbar is-dark'>
+					<div className='navbar-brand'>
+						<h1 className='navbar-item'>
+							{`My favourite albums & tracks`}
+						</h1>
 					</div>
+				</div>
+				<div className='container is-fluid'>
 					<div className='columns'>
 						{this.props.error &&
 							<ColumnComp _isFull>

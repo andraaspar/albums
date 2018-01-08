@@ -34,27 +34,19 @@ module.exports = {
 			{
 				test: /\.(scss|sass)$/,
 				use: extractSass.extract({
-					fallback: 'style-loader',
+					// fallback: 'style-loader',
 					use: [
-						{
-							loader: 'css-loader',
-						},
-						{
-							loader: 'sass-loader',
-						}
+						{ loader: 'css-loader' },
+						{ loader: 'sass-loader' },
 					],
 				}),
 			},
 			{
-				test: /\.css$/,
-				use: ['style-loader', 'css-loader']
-			},
-			{
-				test: /\.(png|jpg|gif|svg|woff|woff2)$/,
+				test: /\.(ttf|eot|svg|woff|woff2)(\?\S*)?$/,
 				use: [
 					{
 						loader: 'file-loader',
-						options: {}
+						options: {},
 					}
 				]
 			},
