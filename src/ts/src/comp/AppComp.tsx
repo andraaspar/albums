@@ -43,22 +43,31 @@ class AppCompPure extends Component<AppCompProps, AppCompState> {
 		return (
 			<Fragment>
 				<div className='navbar is-dark'>
-					<div className='navbar-brand'>
-						<h1 className='navbar-item'>
-							{`My favourite albums & tracks`}
-						</h1>
+					<div className='container is-fluid'>
+						<div className='navbar-brand'>
+							<h1 className='navbar-item'>
+								{`My favourite albums & tracks`}
+							</h1>
+						</div>
+						<div className='navbar-menu is-active'>
+							<div className='navbar-end'>
+								<div className='navbar-item'>
+									<FieldComp
+										_iconLeft={<IconComp _icon={Icon_search} />}
+									>
+										<InputComp
+											value={this.props.query}
+											onChange={e => this.props.setInput(e.target.value)}
+											placeholder={`Filter...`}
+										/>
+									</FieldComp>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 				<div className='container is-fluid'>
-					<FieldComp
-						_iconLeft={<IconComp _icon={Icon_search} />}
-					>
-						<InputComp
-							value={this.props.query}
-							onChange={e => this.props.setInput(e.target.value)}
-							placeholder={`Filter...`}
-						/>
-					</FieldComp>
+					<br />
 					{this.props.error &&
 						<article className='message is-danger'>
 							<div className='message-body' style={{ whiteSpace: `pre-wrap` }}>
@@ -105,6 +114,14 @@ class AppCompPure extends Component<AppCompProps, AppCompState> {
 								</PanelComp>
 							</ColumnComp>
 						)}
+					</div>
+					<br/>
+				</div>
+				<div className='footer'>
+					<div className='container is-fluid'>
+						<div className='content has-text-centered'>
+							<p>{`Awesome.`}</p>
+						</div>
 					</div>
 				</div>
 			</Fragment>

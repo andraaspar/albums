@@ -4,6 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { CheckerPlugin } = require('awesome-typescript-loader')
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const CleanWebpackPlugin = require('clean-webpack-plugin')
 
 const extractSass = new ExtractTextPlugin({
 	filename: '[name].[contenthash].css',
@@ -60,6 +61,7 @@ module.exports = {
 	},
 	plugins: [
 		// new BundleAnalyzerPlugin(),
+		new CleanWebpackPlugin(['build']),
 		new CheckerPlugin(),
 		new HtmlWebpackPlugin({
 			template: path.resolve(__dirname, 'src/html/index.html'),
@@ -70,4 +72,7 @@ module.exports = {
 		// }),
 		// new webpack.optimize.UglifyJsPlugin(),
 	],
+	// externals: {
+	// 	'redux-logger': '{}',
+	// },
 }
