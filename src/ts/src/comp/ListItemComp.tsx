@@ -18,8 +18,8 @@ export class ListItemComp extends Component<ListItemCompProps, ListItemCompState
 	render() {
 		return (
 			<div>
-				{this.props._item.artistName}
-				{`: `}
+				<span>{this.props._item.artistName}</span>
+				{`: `}
 				{this.props._item.trackTitle ?
 					<Fragment>
 						<strong>{this.props._item.trackTitle}</strong>
