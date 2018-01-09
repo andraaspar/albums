@@ -1,3 +1,4 @@
+import axios from 'axios'
 import { uuid } from 'illa/StringUtil'
 import { all, call, put, takeLatest } from 'redux-saga/effects'
 import { ActionFetchLists, createActionFetchListsError, createActionFetchListsSuccess } from './ActionFetchLists'
@@ -5,10 +6,8 @@ import { ActionType } from './ActionType'
 import { ModelListItem } from './ModelListItem'
 
 function loadJson<T = {}>(url: string): Promise<T> {
-	return fetch(url).then(_ => {
-		if (_.status != 200) throw _.statusText
-		return _.json()
-	})
+	return axios.get<T>(url)
+		.then(_ => _.data)
 }
 
 const ratingFileNames = [

@@ -1,8 +1,7 @@
 import { Component, createElement } from 'react'
-import { Icon } from '../model/Icon'
 
 export interface IconCompProps {
-	_icon: Icon
+	_icon: string
 	_rotate?: boolean
 	_pulse?: boolean
 }

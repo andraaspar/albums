@@ -1,5 +1,5 @@
 import { applyMiddleware, createStore } from 'redux'
-import { logger, createLogger } from 'redux-logger'
+import { createLogger } from 'redux-logger'
 import createSagaMiddleware from 'redux-saga'
 import { rootSaga } from './sagas'
 import { rootReducer } from './State'
@@ -11,7 +11,7 @@ const middleware = [
 		collapsed: true,
 		timestamp: false,
 	}),
-].filter(_ => Boolean(_))
+].filter(Boolean)
 
 export const store = createStore(
 	rootReducer,

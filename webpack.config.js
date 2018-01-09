@@ -22,6 +22,7 @@ module.exports = {
 		extensions: ['.ts', '.tsx', '.js', '.jsx'],
 		modules: [
 			'node_modules',
+			'./src/ts/node_modules',
 			'.'
 		],
 	},

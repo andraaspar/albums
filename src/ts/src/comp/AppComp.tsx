@@ -4,7 +4,7 @@ import { connect, DispatchProp } from 'react-redux'
 import { Dispatch } from 'redux'
 import { createActionFetchLists } from '../model/ActionFetchLists'
 import { createActionSetQuery } from '../model/ActionSetInput'
-import { Icon } from '../model/Icon'
+import { Icon_search, Icon_spinner } from '../model/Icon'
 import { ModelListItem } from '../model/ModelListItem'
 import { State } from '../model/State'
 import { ColumnComp } from './ColumnComp'
@@ -51,7 +51,7 @@ class AppCompPure extends Component<AppCompProps, AppCompState> {
 				</div>
 				<div className='container is-fluid'>
 					<FieldComp
-						_iconLeft={<IconComp _icon={Icon.search} />}
+						_iconLeft={<IconComp _icon={Icon_search} />}
 					>
 						<InputComp
 							value={this.props.query}
@@ -71,7 +71,7 @@ class AppCompPure extends Component<AppCompProps, AppCompState> {
 							<PanelComp _heading={`Favourite tracks`}>
 								{this.props.isLoadingLists &&
 									<PanelBlockComp
-										_icon={<IconComp _icon={Icon.spinner} _pulse />}
+										_icon={<IconComp _icon={Icon_spinner} _pulse />}
 									>
 										<em>{`Loading...`}</em>
 									</PanelBlockComp>
@@ -90,7 +90,7 @@ class AppCompPure extends Component<AppCompProps, AppCompState> {
 								<PanelComp _heading={`${makeStars(stars, 3)} albums`}>
 									{this.props.isLoadingLists &&
 										<PanelBlockComp
-											_icon={<IconComp _icon={Icon.spinner} _pulse />}
+											_icon={<IconComp _icon={Icon_spinner} _pulse />}
 										>
 											<em>{`Loading...`}</em>
 										</PanelBlockComp>

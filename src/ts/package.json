@@ -2,7 +2,9 @@
   "license": "UNLICENSED",
   "flat": true,
   "dependencies": {
+    "axios": "^0.17.1",
     "illa": "^13.1.0",
+    "raf": "^3.4.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-redux": "^5.0.6",
