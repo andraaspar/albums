@@ -17,7 +17,10 @@ export class ListItemComp extends Component<ListItemCompProps, ListItemCompState
 	// componentWillUpdate(nextProps: ListItemCompProps, nextState: ListItemCompState) {}
 	render() {
 		return (
-			<div>
+			<a
+				href={`https://open.spotify.com/search/${this.props._item.trackTitle ? `songs` : `albums`}/${encodeURIComponent(`${this.props._item.artistName}: ${this.props._item.albumTitle}` + (this.props._item.trackTitle ? `: ${this.props._item.trackTitle}` : ``))}`}
+				target='_blank'
+			>
 				<span>{this.props._item.artistName}</span>
 				{`: `}
 				{this.props._item.trackTitle ?
@@ -34,7 +37,7 @@ export class ListItemComp extends Component<ListItemCompProps, ListItemCompState
 					:
 					<strong>{this.props._item.albumTitle}</strong>
 				}
-			</div>
+			</a>
 		)
 	}
 	// componentDidMount() {}

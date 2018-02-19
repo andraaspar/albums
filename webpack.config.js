@@ -16,7 +16,7 @@ module.exports = {
 		client: './src/ts/src/index.tsx',
 	},
 	output: {
-		path: path.resolve(__dirname, 'build'),
+		path: path.resolve(__dirname, 'docs'),
 		filename: '[name].[hash].js',
 	},
 	resolve: {
@@ -61,16 +61,16 @@ module.exports = {
 	},
 	plugins: [
 		// new BundleAnalyzerPlugin(),
-		new CleanWebpackPlugin(['build']),
+		new CleanWebpackPlugin(['docs']),
 		new CheckerPlugin(),
 		new HtmlWebpackPlugin({
 			template: path.resolve(__dirname, 'src/html/index.html'),
 		}),
 		extractSass,
-		// new webpack.DefinePlugin({
-		// 	'process.env.NODE_ENV': JSON.stringify('production')
-		// }),
-		// new webpack.optimize.UglifyJsPlugin(),
+		new webpack.DefinePlugin({
+			'process.env.NODE_ENV': JSON.stringify('production')
+		}),
+		new webpack.optimize.UglifyJsPlugin(),
 	],
 	// externals: {
 	// 	'redux-logger': '{}',
